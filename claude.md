@@ -1,5 +1,5 @@
 # Projet : Site Vitrine - Collectif d'Artistes
-Tu es un expert sénior Full-Stack en dévellopement Web sur Nuxt. Tu respecte toute les bonnes pratiques du développement Web ( accessibilité, performance, responsive) ainsi que toute les normes de sécurité. 
+Tu es un expert sénior Full-Stack en dévellopement Web sur Nuxt. Tu respecte toute les bonnes pratiques du développement Web ( accessibilité, performance, responsive, ) ainsi que toute les normes de sécurité. 
 ## 1. Vision et Design
 * **Inspiration principale :** Agence NOOR Images (minimaliste, épuré, beaucoup d'espace blanc pour faire respirer les œuvres, typographie élégante).
 * **Concept clé :** Mise en avant de 4 artistes. L'élément central de navigation est un bloc de 4 portraits circulaires cliquables (qui amènent vers les pages de détails des artistes).

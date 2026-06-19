@@ -1,0 +1,467 @@
+/* ============================================================
+   YOLOVI — Design System inspiré NOOR Images
+   Polices : Cormorant Garamond (titres) + DM Sans (corps)
+   ============================================================ */
+
+/* 1. Variables */
+:root {
+  --font-display: 'Cormorant Garamond', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  --color-bg:           #ffffff;
+  --color-text:         #0d0d0d;
+  --color-text-muted:   #999999;
+  --color-border:       #e8e8e8;
+
+  --spacing-sm:  1.5rem;
+  --spacing-md:  3rem;
+  --spacing-lg:  5rem;
+  --spacing-xl:  8rem;
+
+  --transition: 0.3s ease;
+  --container:  1200px;
+}
+
+/* 2. Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 300;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ============================================================
+   3. Header
+   ============================================================ */
+.site-header {
+  padding: 1.8rem 0;
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg);
+  z-index: 100;
+}
+
+.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+}
+
+.main-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+}
+
+.main-nav a {
+  font-size: 0.72rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+  transition: color var(--transition);
+}
+
+.main-nav a:hover {
+  color: var(--color-text);
+}
+
+/* ============================================================
+   4. Banderole (page d'accueil uniquement)
+   ============================================================ */
+.banderole-wrap {
+  width: 100%;
+  height: 55vh;
+  overflow: hidden;
+}
+
+.banderole-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ============================================================
+   5. Artists section — 4 portraits circulaires
+   ============================================================ */
+.artists-section {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.artists-grid {
+  display: flex;
+  justify-content: center;
+  gap: 4rem;
+  flex-wrap: wrap;
+}
+
+.artist-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.artist-portrait {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background-color: var(--color-border);
+  background-size: cover;
+  background-position: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.artist-card:hover .artist-portrait {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+}
+
+.artist-name {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 1px;
+  transition: opacity var(--transition);
+}
+
+.artist-card:hover .artist-name {
+  opacity: 0.45;
+}
+
+/* ============================================================
+   6. Page d'accueil — Texte de présentation du projet
+   ============================================================ */
+.projet {
+  max-width: 680px;
+  margin: var(--spacing-xl) auto;
+  padding: 0 2.5rem;
+  text-align: center;
+}
+
+.projet h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 300;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+}
+
+.projet p {
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   7. Page d'accueil — Détail des 4 artistes
+   ============================================================ */
+.artists-details {
+  padding: var(--spacing-md) 0 var(--spacing-xl);
+}
+
+.artist-article {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto var(--spacing-xl);
+  padding: 0 2.5rem;
+}
+
+/* Alternance image gauche / droite */
+.artist-article:nth-child(even) {
+  direction: rtl;
+}
+.artist-article:nth-child(even) > * {
+  direction: ltr;
+}
+
+.artist-profile h2 {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.artist-profile img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+}
+
+.artist-bio h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--color-text-muted);
+  margin-bottom: 1.2rem;
+}
+
+.artist-bio p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: var(--color-text-muted);
+  margin-bottom: 2rem;
+}
+
+.artist-bio a {
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-text);
+  padding-bottom: 2px;
+  transition: opacity var(--transition);
+}
+
+.artist-bio a:hover {
+  opacity: 0.4;
+}
+
+/* ============================================================
+   8. Page artiste — Layout éditorial
+   ============================================================ */
+.artist-page {
+  padding-bottom: var(--spacing-xl);
+}
+
+.artist-hero {
+  max-width: 900px;
+  margin: var(--spacing-lg) auto var(--spacing-md);
+  padding: 0 2.5rem var(--spacing-md);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.artist-discipline {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--color-text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.artist-page h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.artist-intro {
+  max-width: 600px;
+  margin: 0 auto var(--spacing-lg);
+  padding: 0 2.5rem;
+}
+
+.artist-statement {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   9. Carousel — style NOOR (minimaliste)
+   ============================================================ */
+.slideshow-container {
+  position: relative;
+  max-width: 860px;
+  margin: 0 auto var(--spacing-sm);
+  padding: 0 4rem;
+}
+
+.mySlides {
+  display: none;
+}
+
+.slide-img {
+  width: 100%;
+  max-height: 600px;
+  object-fit: contain;
+}
+
+.slide-counter {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: var(--color-text-muted);
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.slide-caption {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  color: var(--color-text-muted);
+  margin-top: 1rem;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  padding: 0.5rem;
+  user-select: none;
+  transition: opacity var(--transition);
+}
+
+.prev { left: 0; }
+.next { right: 0; }
+
+.prev:hover, .next:hover {
+  opacity: 0.35;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  cursor: pointer;
+  height: 1px;
+  width: 2.5rem;
+  background-color: var(--color-border);
+  display: inline-block;
+  transition: background-color var(--transition);
+}
+
+.dot.active, .dot:hover {
+  background-color: var(--color-text);
+}
+
+.fade {
+  animation: fade 0.7s ease;
+}
+
+@keyframes fade {
+  from { opacity: 0.2; }
+  to   { opacity: 1; }
+}
+
+/* ============================================================
+   10. Footer
+   ============================================================ */
+.site-footer {
+  text-align: center;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--color-border);
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+}
+
+/* ============================================================
+   11. Transitions de pages
+   ============================================================ */
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.35s ease;
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+/* ============================================================
+   12. Responsive
+   ============================================================ */
+@media (max-width: 900px) {
+  .artist-article {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    direction: ltr !important;
+  }
+  .artist-article:nth-child(even) {
+    direction: ltr;
+  }
+  .artist-profile img {
+    height: 380px;
+  }
+  .artists-grid {
+    gap: 2rem;
+  }
+  .artist-portrait {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 600px) {
+  .site-header .container {
+    flex-direction: column;
+    gap: 1.2rem;
+    text-align: center;
+  }
+  .main-nav ul {
+    gap: 1.5rem;
+  }
+  .banderole-wrap {
+    height: 35vh;
+  }
+  .artist-profile img {
+    height: 280px;
+  }
+  .slideshow-container {
+    padding: 0 2.5rem;
+  }
+}
