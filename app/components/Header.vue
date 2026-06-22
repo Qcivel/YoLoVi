@@ -4,8 +4,8 @@
       <h1 class="logo"><NuxtLink to="/">YO LO VI</NuxtLink></h1>
       <nav class="main-nav" aria-label="Navigation principale">
         <ul>
-          <li><a href="#about">Le Projet</a></li>
-          <li><a href="#artists">Les Artistes</a></li>
+          <li><NuxtLink to="/">Le Projet</NuxtLink></li>
+          <li><NuxtLink to="/artistes">Les Artistes</NuxtLink></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
