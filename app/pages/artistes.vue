@@ -44,7 +44,7 @@ const artists = [
   {
     slug: 'moly-route',
     name: 'Moly Route',
-    discipline: 'Peinture',
+    discipline: 'Photographie',
     route: '/MolyRoute',
     photo: '',
     bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
@@ -60,7 +60,7 @@ const artists = [
   {
     slug: 'theo-renaut',
     name: 'Théo Renaut',
-    discipline: 'Sculpture',
+    discipline: 'Photographie',
     route: '/TheoRenaut',
     photo: '',
     bio: 'Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est qui dolorem ipsum quia dolor sit amet.',
@@ -68,7 +68,7 @@ const artists = [
   {
     slug: 'remy-gabalda',
     name: 'Rémy Gabalda',
-    discipline: 'Vidéo & Installation',
+    discipline: 'Photographie',
     route: '/RemyGabalda',
     photo: '',
     bio: 'Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam nisi ut aliquid ex ea commodi consequatur. Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil.',

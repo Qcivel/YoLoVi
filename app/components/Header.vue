@@ -6,7 +6,7 @@
         <ul>
           <li><NuxtLink to="/">Le Projet</NuxtLink></li>
           <li><NuxtLink to="/artistes">Les Artistes</NuxtLink></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><NuxtLink to="/contact">Contact</NuxtLink></li>
         </ul>
       </nav>
     </div>
