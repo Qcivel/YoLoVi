@@ -63,4 +63,24 @@
 </script>
 
 <style scoped>
+.projet {
+  max-width: 720px;
+  margin: 0 auto 5rem;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.projet h2 {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #999;
+  margin-bottom: 1.5rem;
+}
+
+.projet p {
+  font-size: 0.95rem;
+  line-height: 1.9;
+  color: #555;
+}
 </style>
