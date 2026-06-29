@@ -20,6 +20,10 @@
 
   --transition: 0.3s ease;
   --container:  1200px;
+
+  /* Layout hero */
+  --header-h:   70px;
+  --artists-h:  9.5rem;
 }
 
 /* 2. Reset */
