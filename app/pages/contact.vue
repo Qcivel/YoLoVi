@@ -183,8 +183,7 @@ import { ref, reactive } from 'vue'
 const MAX_CHARS = 2000
 
 const artists = [
-  { label: 'Moly Route', value: 'moly-route' },
-  { label: 'Claire Von Corda', value: 'claire-von-corda' },
+  { label: 'Julie', value: 'claire-von-corda' },
   { label: 'Théo Renaut', value: 'theo-renaut' },
   { label: 'Rémy Gabalda', value: 'remy-gabalda' },
   { label: 'Le collectif (général)', value: 'collectif' },

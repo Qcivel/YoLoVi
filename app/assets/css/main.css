@@ -291,7 +291,7 @@ a {
 
 .artist-page h1 {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-size: clamp(2.25rem, 5vw, 4rem);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -1px;
@@ -330,6 +330,42 @@ a {
   width: 100%;
   max-height: 600px;
   object-fit: contain;
+}
+
+.slide-expand {
+  all: unset;
+  cursor: zoom-in;
+  display: block;
+  position: relative;
+  width: 100%;
+}
+
+.slide-expand:focus-visible {
+  outline: 2px solid var(--color-text, #111);
+  outline-offset: 2px;
+}
+
+.slide-expand__icon {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 0.95rem;
+  line-height: 1;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.slide-expand:hover .slide-expand__icon,
+.slide-expand:focus-visible .slide-expand__icon {
+  opacity: 1;
 }
 
 .slide-counter {

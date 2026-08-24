@@ -6,7 +6,7 @@
     </header>
 
     <section class="artist-intro">
-      <p class="artist-statement">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+      <p class="artist-statement"> Description Artiste :Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
     </section>
 
     <div class="slideshow-container">
@@ -17,7 +17,10 @@
         :style="{ display: index === current ? 'block' : 'none' }"
       >
         <p class="slide-counter">{{ index + 1 }} / {{ slides.length }}</p>
-        <img :src="slide.src" :alt="slide.caption" class="slide-img">
+        <button type="button" class="slide-expand" aria-label="Voir en plein écran" @click="lightboxOpen = true">
+          <img :src="slide.src" :alt="slide.caption" class="slide-img">
+          <span class="slide-expand__icon" aria-hidden="true">⛶</span>
+        </button>
         <p class="slide-caption">{{ slide.caption }}</p>
       </div>
 
@@ -35,6 +38,14 @@
         :aria-label="`Image ${index + 1}`"
       ></span>
     </div>
+
+    <PhotoLightbox
+      v-if="lightboxOpen"
+      :slides="slides.map(s => ({ src: s.src, alt: s.caption }))"
+      :index="current"
+      @update:index="current = $event"
+      @close="lightboxOpen = false"
+    />
 
     <section class="projects-section">
       <h2 class="section-title">Projets</h2>
@@ -99,6 +110,7 @@ const slides = [
 ]
 
 const current = ref(0)
+const lightboxOpen = ref(false)
 
 function changeSlide(n) {
   current.value = (current.value + n + slides.length) % slides.length

@@ -14,30 +14,22 @@ Tu es un expert sénior Full-Stack en dévellopement Web sur Nuxt. Tu respecte t
 ## 3. Architecture des Dossiers (Nuxt 3)
 ```text
 YoLoVi/
-├── .output/
-├── app/
-│   └── app.vue
-├── components/
-│   ├── Artists.vue
-│   ├── ClaireVonCorda.vue
-│   ├── Footer.vue
-│   ├── Header.vue
-│   ├── Home.vue
-│   └── TheoRenaut.vue
-├── layouts/
-│   └── default.vue
-├── node_modules/
-├── pages/
-│   └── index.vue
-├── public/
-│   ├── favicon.ico
-│   ├── la-cour-1.jpg
-│   ├── PORTRAIT-WOESTELANDT-Emilie.png
-│   └── robots.txt
-├── .gitignore
-├── claude.md
-├── nuxt.config.ts
-├── package-lock.json
-├── package.json
-├── README.md
-└── tsconfig.json
+|-- agent/
+|   `-- style.md
+|-- app/
+|   |-- app.vue
+|   |-- assets/
+|   |-- components/
+|   |-- layouts/
+|   `-- pages/
+|-- public/
+|   |-- favicon.ico
+|   |-- robots.txt
+|   `-- [images & assets statiques]
+|-- server/
+|   `-- api/
+|-- README.md
+|-- claude.md
+|-- nuxt.config.ts
+|-- package.json
+`-- tsconfig.json
