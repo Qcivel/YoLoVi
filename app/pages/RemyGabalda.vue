@@ -31,7 +31,10 @@
         :style="{ display: index === current ? 'block' : 'none' }"
       >
         <p class="slide-counter">{{ index + 1 }} / {{ activeSlides.length }}</p>
-        <img :src="slide.src" :alt="slide.alt" class="slide-img">
+        <button type="button" class="slide-expand" aria-label="Voir en plein écran" @click="lightboxOpen = true">
+          <img :src="slide.src" :alt="slide.alt" class="slide-img">
+          <span class="slide-expand__icon" aria-hidden="true">⛶</span>
+        </button>
       </div>
 
       <button class="prev" @click="changeSlide(-1)" aria-label="Image précédente">←</button>
@@ -52,6 +55,14 @@
     <section class="series-description">
       <p>{{ activeDescription }}</p>
     </section>
+
+    <PhotoLightbox
+      v-if="lightboxOpen"
+      :slides="activeSlides"
+      :index="current"
+      @update:index="current = $event"
+      @close="lightboxOpen = false"
+    />
   </div>
 </template>
 
@@ -116,6 +127,7 @@ const series = [
 
 const activeSeries = ref(0)
 const current = ref(0)
+const lightboxOpen = ref(false)
 
 const activeSlides = computed(() => series[activeSeries.value].slides)
 const activeDescription = computed(() => series[activeSeries.value].description)
@@ -124,6 +136,7 @@ function selectSeries(index) {
   if (index === activeSeries.value) return
   activeSeries.value = index
   current.value = 0
+  lightboxOpen.value = false
 }
 
 function changeSlide(n) {
