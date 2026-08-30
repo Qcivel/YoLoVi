@@ -43,8 +43,8 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 // TODO : remplacer `image` par la vraie photo de chaque artiste quand elles seront prêtes
 const slides = [
-  { name: 'Moly Route', to: '/MolyRoute', image: '/theoRenaut/LaCour/la-cour-3.jpg', alt: 'Photo de Julie' },
-  { name: 'Théo Renaut', to: '/TheoRenaut', image: '/theoRenaut/LaCour/la-cour-4.jpg', alt: 'Photo de Théo Renaut' },
+  { name: 'Julie Garrido', to: '/JulieGarrido', image: '/julieGarrido/Earthquake/Earthquake_1.jpg', alt: 'Photo de Julie' },
+  { name: 'Théo Renaut', to: '/TheoRenaut', image: '/theoRenaut/LaCour/la-cour_4.jpg', alt: 'Photo de Théo Renaut' },
   { name: 'Rémy Gabalda', to: '/RemyGabalda', image: '/remyGabalda/DSCF4252.JPG', alt: 'Photo de Rémy Gabalda' },
 ]
 

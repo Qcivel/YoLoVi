@@ -73,7 +73,7 @@ function laCourSlides() {
   const slides = []
   for (let i = 1; i <= 17; i++) {
     slides.push({
-      src: `/theoRenaut/LaCour/la-cour-${i}.jpg`,
+      src: `/theoRenaut/LaCour/la-cour_${i}.jpg`,
       alt: `La Cour — photo ${i}`,
     })
   }
@@ -81,46 +81,25 @@ function laCourSlides() {
 }
 
 function accueilSlides() {
-  const files = [
-    'IMG-20250728-WA0000.jpg',
-    'IMG-20250728-WA0001.jpg',
-    'IMG-20250728-WA0002.jpg',
-    'IMG-20250728-WA0004.jpg',
-    'IMG-20250728-WA0005.jpg',
-    'IMG-20250728-WA0006.jpg',
-    'IMG-20250728-WA0007.jpg',
-    'IMG-20250728-WA0008.jpg',
-    'IMG-20250728-WA0009.jpg',
-    'IMG-20250728-WA0010.jpg',
-    'IMG-20250728-WA0011.jpg',
-    'IMG-20250728-WA0013.jpg',
-    'IMG-20250728-WA0014.jpg',
-    'IMG-20250728-WA0015.jpg',
-    'IMG-20250728-WA0016.jpg',
-    'IMG-20250728-WA0017.jpg',
-    'IMG-20250728-WA0018.jpg',
-    'IMG-20250728-WA0019.jpg',
-    'IMG-20250728-WA0020.jpg',
-    'IMG-20250728-WA0021.jpg',
-    'IMG-20250728-WA0022.jpg',
-  ]
-  return files.map((file, i) => ({
-    src: `/theoRenaut/acceuil/${file}`,
-    alt: `Accueil — photo ${i + 1}`,
-  }))
+  const slides = []
+  for (let i = 1; i <= 21; i++) {
+    slides.push({
+      src: `/theoRenaut/acceuil/acceuil_${i}.jpg`,
+      alt: `Acceuil photo ${i}`,
+    })
+  }
+  return slides
 }
 
 function archiveSlides() {
-  const files = [
-    'g.jpg',
-    'g-2.jpg',
-    'g-3.jpg',
-    `page d'accueuil 2.jpg`,
-  ]
-  return files.map((file, i) => ({
-    src: encodeURI(`/theoRenaut/archive/${file}`),
-    alt: `Archives — photo ${i + 1}`,
-  }))
+  const slides = []
+  for (let i = 1; i <= 4; i++) {
+    slides.push({
+      src: `/theoRenaut/archive/archive_${i}.jpg`,
+      alt: `Archive photo ${i}`,
+    })
+  }
+  return slides
 }
 
 const series = [

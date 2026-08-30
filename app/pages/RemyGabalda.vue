@@ -70,41 +70,22 @@
 import { ref, computed } from 'vue'
 
 function mementoMoriSlides() {
-  const files = [
-    'crane-01.jpg',
-    'crane-02.jpg',
-    'crane-03.jpg',
-    'crane-03 (2).jpg',
-    'crane-04.jpg',
-    'crane-06 (1).jpg',
-    'crane-06 (2).jpg',
-    'crane-06 (3).jpg',
-    'crane-06 (4).jpg',
-    'crane-06 (5).jpg',
-    'crane-06 (6).jpg',
-    'crane-06 (7).jpg',
-    'crane-06 (8).jpg',
-    'crane-06 (9).jpg',
-    'crane-06 (10).jpg',
-    'crane-06 (11).jpg',
-    'crane-06 (12).jpg',
-    'crane-06 (13).jpg',
-    'crane-06 (14).jpg',
-    'crane-06 (15).jpg',
-  ]
-  return files.map((file, i) => ({
-    src: encodeURI(`/remyGabalda/MEMENTO MORI/${file}`),
-    alt: `Memento Mori — photo ${i + 1}`,
-  }))
+  const slides = []
+  for (let i = 1; i <= 21; i++) {
+    slides.push({
+      src: encodeURI(`/remyGabalda/mementoMori/crane_${i}.jpg`),
+      alt: `Memento Mori_photo ${i}`,
+    })
+  }
+  return slides
 }
 
 function intifadaSlides() {
   const slides = []
   for (let i = 1; i <= 28; i++) {
-    const ext = (i === 1 || i >= 15) ? 'JPG' : 'jpg'
     slides.push({
-      src: encodeURI(`/remyGabalda/INTIFADA AL AQSA/intifada-01 (${i}).${ext}`),
-      alt: `Intifada Al Aqsa — photo ${i}`,
+      src: encodeURI(`/remyGabalda/intifadaAlAqsa/intifada_${i}.jpg`),
+      alt: `Intifada Al Aqsa_photo ${i}`,
     })
   }
   return slides
