@@ -1,7 +1,7 @@
 <template>
   <footer class="site-footer">
     <div class="footer-inner">
-      <p class="footer-copy">&copy; 2026 YO LO VI — Tous droits réservés.</p>
+      <p class="footer-copy">&copy; 2026 YO LO VI - Tous droits réservés.</p>
       <nav class="footer-nav" aria-label="Liens légaux">
         <NuxtLink to="/mentions-legales">Mentions légales</NuxtLink>
         <NuxtLink to="/contact">Contact</NuxtLink>

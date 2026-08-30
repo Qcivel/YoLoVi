@@ -8,7 +8,6 @@
           <li><NuxtLink to="/artistes">Les Artistes</NuxtLink></li>
           <li><NuxtLink to="/ateliers">Ateliers</NuxtLink></li>
           <li><NuxtLink to="/expositions">Expositions</NuxtLink></li>
-          <li><NuxtLink to="/louer-une-exposition">Louer une expo</NuxtLink></li>
           <li><NuxtLink to="/contact">Contact</NuxtLink></li>
         </ul>
       </nav>

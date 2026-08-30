@@ -28,7 +28,7 @@
           :to="item.to"
           class="whats-new__item"
         >
-          <h3 class="whats-new__label">{{ item.artist }} — {{ item.series }}</h3>
+          <h3 class="whats-new__label">{{ item.artist }} - {{ item.series }}</h3>
           <img :src="item.image" :alt="`Série ${item.series}, par ${item.artist}`" class="whats-new__img">
         </NuxtLink>
       </div>
