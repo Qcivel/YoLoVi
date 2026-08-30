@@ -42,11 +42,11 @@
 <script setup>
 const artists = [
   {
-    slug: 'julie',
-    name: 'Julie',
+    slug: 'julie-garrido',
+    name: 'Julie Garrido',
     discipline: 'Photographie',
-    route: '/Julie',
-    photo: '/PORTRAIT-WOESTELANDT-Emilie.png',
+    route: '/JulieGarrido',
+    photo: '',
     bio: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
   },
   {

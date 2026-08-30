@@ -38,9 +38,9 @@
 
 <script setup>
 const artists = [
-  { name: 'Julie', to: '/MolyRoute', image: '/theoRenaut/LaCour/la-cour-3.jpg' },
-  { name: 'Théo Renaut', to: '/TheoRenaut', image: '/theoRenaut/LaCour/la-cour-2.jpg' },
-  { name: 'Rémy Gabalda', to: '/RemyGabalda', image: '/remyGabalda/DSCF4252.JPG' },
+  { name: 'Julie Garrido', to: '/JulieGarrido', image: '/julieGarrido/Earthquake/Earthquake_1.jpg', alt: 'Photo de Julie' },
+  { name: 'Théo Renaut', to: '/TheoRenaut', image: '/theoRenaut/LaCour/la-cour_4.jpg', alt: 'Photo de Théo Renaut' },
+  { name: 'Rémy Gabalda', to: '/RemyGabalda', image: '/remyGabalda/DSCF4252.JPG', alt: 'Photo de Rémy Gabalda' },
 ]
 
 // Séries récemment ajoutées par les artistes — à compléter au fur et à mesure
@@ -50,13 +50,13 @@ const whatsNew = [
     artist: 'Rémy Gabalda',
     series: 'Memento Mori',
     to: '/RemyGabalda',
-    image: encodeURI('/remyGabalda/MEMENTO MORI/crane-01.jpg'),
+    image: encodeURI('/remyGabalda/mementoMori/crane_1.jpg'),
   },
   {
     artist: 'Rémy Gabalda',
     series: 'Intifada Al Aqsa',
     to: '/RemyGabalda',
-    image: encodeURI('/remyGabalda/INTIFADA AL AQSA/intifada-01 (2).jpg'),
+    image: encodeURI('/remyGabalda/intifadaAlAqsa/intifada_1.jpg'),
   },
 ]
 </script>

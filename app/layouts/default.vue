@@ -1,7 +1,7 @@
 <template>
   <div class="layout" :class="{ 'layout--home': isHome }">
     <Header />
-    <Artists />
+    <!-- <Artists /> -->
     <main class="layout__main">
       <slot />
     </main>
