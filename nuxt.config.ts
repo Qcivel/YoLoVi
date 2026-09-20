@@ -20,4 +20,11 @@ export default defineNuxtConfig({
   },
 
   modules: ['nuxt-auth-utils'],
+  runtimeConfig: {
+  dbHost: '',
+  dbPort: '',
+  dbUser: '',
+  dbPassword: '',
+  dbName: '',
+},
 })
