@@ -3,8 +3,7 @@ import { defineEventHandler, readBody, createError } from 'h3'
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const RECIPIENT_EMAILS: Record<string, string> = {
-  'moly-route':       'moly@yolovi.fr',
-  'claire-von-corda': 'claire@yolovi.fr',
+  'julie-garrido': 'julie@yolovi.fr',
   'theo-renaut':      'theo@yolovi.fr',
   'remy-gabalda':     'remy@yolovi.fr',
   'collectif':        'contact@yolovi.fr',

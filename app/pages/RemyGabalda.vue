@@ -69,23 +69,12 @@
 <script setup>
 import { ref, computed } from 'vue'
 
-function mementoMoriSlides() {
+function buildSlides(folder, prefix, count, label) {
   const slides = []
-  for (let i = 1; i <= 21; i++) {
+  for (let i = 1; i <= count; i++) {
     slides.push({
-      src: encodeURI(`/remyGabalda/mementoMori/crane_${i}.jpg`),
-      alt: `Memento Mori_photo ${i}`,
-    })
-  }
-  return slides
-}
-
-function intifadaSlides() {
-  const slides = []
-  for (let i = 1; i <= 28; i++) {
-    slides.push({
-      src: encodeURI(`/remyGabalda/intifadaAlAqsa/intifada_${i}.jpg`),
-      alt: `Intifada Al Aqsa_photo ${i}`,
+      src: encodeURI(`/remyGabalda/${folder}/${prefix}_${i}.jpg`),
+      alt: `${label} — photo ${i}`,
     })
   }
   return slides
@@ -95,13 +84,13 @@ const series = [
   {
     slug: 'memento-mori',
     name: 'Memento Mori',
-    slides: mementoMoriSlides(),
+    slides: buildSlides('mementoMori', 'crane', 21, 'Memento Mori'),
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.',
   },
   {
     slug: 'intifada-al-aqsa',
     name: 'Intifada Al Aqsa',
-    slides: intifadaSlides(),
+    slides: buildSlides('intifadaAlAqsa', 'intifada', 28, 'Intifada Al Aqsa'),
     description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.',
   },
 ]

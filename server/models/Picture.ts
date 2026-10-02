@@ -5,16 +5,16 @@ interface InsertPictureInput {
   title: string
   url: string
   seriesId: number
-  description: string
+  description?: string | null
 }
 
 export class Picture {
   id: number
   title: string
   url: string
-  description: string
+  description: string | null
 
-  constructor(id: number, title: string, url: string, description: string) {
+  constructor(id: number, title: string, url: string, description: string | null) {
     this.id = id
     this.title = title
     this.url = url
@@ -23,13 +23,9 @@ export class Picture {
 
   static async insertPicture({ title, url, seriesId, description }: InsertPictureInput): Promise<number> {
     const db = useDb()
-    const [descResult] = await db.query<ResultSetHeader>(
-      'INSERT INTO description (content_description) VALUES (?)',
-      [description]
-    )
     const [result] = await db.query<ResultSetHeader>(
-      'INSERT INTO Picture (title_picture, url_picture, Id_Series, Id_description) VALUES (?, ?, ?, ?)',
-      [title, url, seriesId, descResult.insertId]
+      'INSERT INTO Picture (title_picture, url_picture, description_picture, Id_Series) VALUES (?, ?, ?, ?)',
+      [title, url, description ?? null, seriesId]
     )
     return result.insertId
   }
@@ -37,10 +33,10 @@ export class Picture {
   static async findRowsBySeriesId(seriesId: number): Promise<RowDataPacket[]> {
     const db = useDb()
     const [rows] = await db.query<RowDataPacket[]>(
-      `SELECT p.Id_Picture, p.title_picture, p.url_picture, d.content_description
-       FROM Picture p JOIN description d ON d.Id_description = p.Id_description
-       WHERE p.Id_Series = ?
-       ORDER BY p.Id_Picture`,
+      `SELECT Id_Picture, title_picture, url_picture, description_picture
+       FROM Picture
+       WHERE Id_Series = ?
+       ORDER BY Id_Picture`,
       [seriesId]
     )
     return rows
@@ -52,6 +48,6 @@ export class Picture {
   }
 
   toJSON() {
-    return { src: this.url, alt: this.description }
+    return { src: this.url, alt: this.description ?? this.title }
   }
 }

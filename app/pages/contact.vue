@@ -183,7 +183,7 @@ import { ref, reactive } from 'vue'
 const MAX_CHARS = 2000
 
 const artists = [
-  { label: 'Julie', value: 'claire-von-corda' },
+  { label: 'Julie', value: 'julie-garrido' },
   { label: 'Théo Renaut', value: 'theo-renaut' },
   { label: 'Rémy Gabalda', value: 'remy-gabalda' },
   { label: 'Le collectif (général)', value: 'collectif' },
