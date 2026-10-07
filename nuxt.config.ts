@@ -26,5 +26,10 @@ export default defineNuxtConfig({
   dbUser: '',
   dbPassword: '',
   dbName: '',
+  smtpHost: '',
+  smtpPort: '',
+  smtpUser: '',
+  smtpPassword: '',
+  mailTestTo: '',
 },
 })
