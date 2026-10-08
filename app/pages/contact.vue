@@ -179,8 +179,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-
-const MAX_CHARS = 2000
+import { validateContactForm, CONTACT_FORM_MAX_CHARS as MAX_CHARS } from '~/utils/contactForm'
 
 const artists = [
   { label: 'test', value: 'test-contact' },
@@ -203,21 +202,9 @@ const form = reactive({
 const errors = reactive({})
 const status = ref('idle') // idle | loading | success | error
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
 function validate() {
   Object.keys(errors).forEach(k => delete errors[k])
-
-  if (!form.recipient)                          errors.recipient  = 'Veuillez sélectionner un destinataire.'
-  if (!form.firstName)                          errors.firstName  = 'Le prénom est obligatoire.'
-  if (!form.lastName)                           errors.lastName   = 'Le nom est obligatoire.'
-  if (!form.email)                              errors.email      = 'L\'adresse e-mail est obligatoire.'
-  else if (!EMAIL_RE.test(form.email))          errors.email      = 'Veuillez saisir une adresse e-mail valide.'
-  if (!form.subject)                            errors.subject    = 'L\'objet est obligatoire.'
-  if (!form.message)                            errors.message    = 'Le message est obligatoire.'
-  else if (form.message.length > MAX_CHARS)     errors.message    = `Le message ne doit pas dépasser ${MAX_CHARS} caractères.`
-  if (!form.gdpr)                               errors.gdpr       = 'Vous devez accepter la politique de traitement des données pour envoyer votre message.'
-
+  Object.assign(errors, validateContactForm(form))
   return Object.keys(errors).length === 0
 }
 

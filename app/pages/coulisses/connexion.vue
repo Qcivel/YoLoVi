@@ -1,4 +1,4 @@
-<template>
+<template> 
     <div>
         <form action="" @submit.prevent="login">
             <label for="email">Identifiant</label>

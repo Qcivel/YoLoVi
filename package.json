@@ -7,18 +7,28 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test": "npm run test:unit && npm run test:e2e",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:e2e": "start-server-and-test dev http://localhost:3000/contact cy:run",
+    "cy:open": "cypress open --e2e",
+    "cy:run": "cypress run --e2e"
   },
   "dependencies": {
     "bcryptjs": "^3.0.3",
     "mysql2": "^3.24.4",
-    "nodemailer": "^10.0.13",
+    "nodemailer": "^10.0.16",
     "nuxt": "^4.4.8",
     "nuxt-auth-utils": "^0.5.30",
     "vue": "^3.5.35",
     "vue-router": "^5.1.0"
   },
   "devDependencies": {
-    "@types/nodemailer": "^8.0.2"
+    "@types/nodemailer": "^8.0.2",
+    "cypress": "^16.1.1",
+    "start-server-and-test": "^3.0.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
   }
 }

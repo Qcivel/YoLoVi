@@ -28,3 +28,7 @@ logs
 *.docx
 *.mdj
 *.xlsx
+# Cypress
+test/e2e/screenshots
+test/e2e/videos
+test/e2e/downloads
