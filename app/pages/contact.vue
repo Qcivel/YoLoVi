@@ -11,6 +11,7 @@
         class="contact-form"
         novalidate
         @submit.prevent="handleSubmit"
+        @input="resetFeedback"
         aria-label="Formulaire de contact"
       >
         <!-- Destinataire -->
@@ -43,6 +44,7 @@
                 id="firstName"
                 type="text"
                 v-model.trim="form.firstName"
+                :maxlength="CONTACT_LIMITS.nameMax"
                 autocomplete="given-name"
                 class="form-input"
                 :class="{ 'form-input--error': errors.firstName }"
@@ -59,6 +61,7 @@
                 id="lastName"
                 type="text"
                 v-model.trim="form.lastName"
+                :maxlength="CONTACT_LIMITS.nameMax"
                 autocomplete="family-name"
                 class="form-input"
                 :class="{ 'form-input--error': errors.lastName }"
@@ -76,6 +79,7 @@
               id="email"
               type="email"
               v-model.trim="form.email"
+              :maxlength="CONTACT_LIMITS.emailMax"
               autocomplete="email"
               class="form-input"
               :class="{ 'form-input--error': errors.email }"
@@ -97,6 +101,7 @@
               id="subject"
               type="text"
               v-model.trim="form.subject"
+              :maxlength="CONTACT_LIMITS.subjectMax"
               class="form-input"
               :class="{ 'form-input--error': errors.subject }"
               placeholder="Proposition d'exposition, collaboration…"
@@ -119,8 +124,8 @@
               :aria-describedby="errors.message ? 'error-message' : undefined"
             ></textarea>
             <p v-if="errors.message" id="error-message" class="field-error" role="alert">{{ errors.message }}</p>
-            <p class="char-count" :class="{ 'char-count--over': form.message.length > MAX_CHARS }">
-              {{ form.message.length }} / {{ MAX_CHARS }}
+            <p class="char-count" :class="{ 'char-count--over': form.message.length > CONTACT_LIMITS.messageMax }">
+              {{ form.message.length }} / {{ CONTACT_LIMITS.messageMax }}
             </p>
           </div>
         </fieldset>
@@ -178,9 +183,10 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
-import { validateContactForm, CONTACT_FORM_MAX_CHARS as MAX_CHARS } from '~/utils/contactForm'
+import { ref } from 'vue'
+import { CONTACT_LIMITS, normalizeContactFields, validateContactForm } from '#shared/utils/contactRules'
 
+//Liste des contacts
 const artists = [
   { label: 'test', value: 'test-contact' },
   { label: 'Julie', value: 'julie-garrido' },
@@ -189,7 +195,8 @@ const artists = [
   { label: 'Le collectif (général)', value: 'collectif' },
 ]
 
-const form = reactive({
+// Valeurs initiales, réutilisées pour vider le formulaire après un envoi réussi
+const emptyForm = () => ({
   recipient: '',
   firstName: '',
   lastName: '',
@@ -199,16 +206,27 @@ const form = reactive({
   gdpr: false,
 })
 
-const errors = reactive({})
+const form = ref(emptyForm())
+const errors = ref({})
 const status = ref('idle') // idle | loading | success | error
 
 function validate() {
-  Object.keys(errors).forEach(k => delete errors[k])
-  Object.assign(errors, validateContactForm(form))
-  return Object.keys(errors).length === 0
+  // Nettoie les espaces multiples, ce qui est envoyé est donc exactement ce qui a été validé
+  form.value = normalizeContactFields(form.value)
+  errors.value = validateContactForm(form.value)
+  // Permet de compter si il y a des erreurs dans l'objet en le transformant en tableau
+  return Object.keys(errors.value).length === 0
+}
+
+// Masque le message de succès ou d'erreur dès que le visiteur modifie un champ
+function resetFeedback() {
+  if (status.value === 'success' || status.value === 'error') {
+    status.value = 'idle'
+  }
 }
 
 async function handleSubmit() {
+  // Vérifie si tout les champs sont correctes
   if (!validate()) return
 
   status.value = 'loading'
@@ -216,16 +234,16 @@ async function handleSubmit() {
     await $fetch('/api/contact', {
       method: 'POST',
       body: {
-        recipient: form.recipient,
-        firstName: form.firstName,
-        lastName:  form.lastName,
-        email:     form.email,
-        subject:   form.subject,
-        message:   form.message,
+        recipient: form.value.recipient,
+        firstName: form.value.firstName,
+        lastName:  form.value.lastName,
+        email:     form.value.email,
+        subject:   form.value.subject,
+        message:   form.value.message,
       },
     })
     status.value = 'success'
-    Object.assign(form, { recipient: '', firstName: '', lastName: '', email: '', subject: '', message: '', gdpr: false })
+    form.value = emptyForm()
   } catch {
     status.value = 'error'
   }

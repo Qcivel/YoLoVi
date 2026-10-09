@@ -1,7 +1,7 @@
 // Logique métier du formulaire de contact, isolée du handler h3 pour être testable unitairement.
+// Les règles des champs sont partagées avec le navigateur (shared/utils/contactRules.ts).
 
-export const CONTACT_EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-export const CONTACT_MAX_CHARS = 2000
+import { normalizeContactFields, validateContactFields, type ContactFields } from '#shared/utils/contactRules'
 
 export const RECIPIENT_EMAILS = {
   'test-contact': 'yolovitest@gmail.com',
@@ -13,33 +13,32 @@ export const RECIPIENT_EMAILS = {
 
 export type RecipientKey = keyof typeof RECIPIENT_EMAILS
 
-export interface ContactPayload {
+export interface ContactPayload extends ContactFields {
   recipient: RecipientKey
-  firstName: string
-  lastName: string
-  email: string
-  subject: string
-  message: string
 }
 
-const isNonEmptyString = (v: unknown): v is string => typeof v === 'string' && v.trim() !== ''
+const FIELD_NAMES = ['firstName', 'lastName', 'email', 'subject', 'message'] as const
 
-/** Retourne le message d'erreur de la première règle violée, ou null si le payload est valide. */
-export function validateContactPayload(body: unknown): string | null {
-  const { recipient, firstName, lastName, email, subject, message } = (body ?? {}) as Record<string, unknown>
+/** Vérifie le corps de la requête et renvoie soit le payload nettoyé, soit le message de la première erreur. */
+export function parseContactPayload(body: unknown): { payload: ContactPayload } | { error: string } {
+  const data = (body ?? {}) as Record<string, unknown>
 
-  if (typeof recipient !== 'string' || !Object.hasOwn(RECIPIENT_EMAILS, recipient))
-    return 'Destinataire invalide.'
-  if (!isNonEmptyString(firstName) || !isNonEmptyString(lastName))
-    return 'Nom et prénom obligatoires.'
-  if (typeof email !== 'string' || !CONTACT_EMAIL_RE.test(email))
-    return 'Adresse e-mail invalide.'
-  if (!isNonEmptyString(subject))
-    return 'Objet obligatoire.'
-  if (!isNonEmptyString(message) || message.length > CONTACT_MAX_CHARS)
-    return 'Message invalide ou trop long.'
+  if (typeof data.recipient !== 'string' || !Object.hasOwn(RECIPIENT_EMAILS, data.recipient))
+    return { error: 'Destinataire invalide.' }
+  if (FIELD_NAMES.some(name => typeof data[name] !== 'string'))
+    return { error: 'Champs manquants ou invalides.' }
 
-  return null
+  const payload = normalizeContactFields({
+    recipient: data.recipient as RecipientKey,
+    firstName: data.firstName as string,
+    lastName:  data.lastName as string,
+    email:     data.email as string,
+    subject:   data.subject as string,
+    message:   data.message as string,
+  })
+
+  const [firstError] = Object.values(validateContactFields(payload))
+  return firstError ? { error: firstError } : { payload }
 }
 
 // En test, tous les messages vont dans UNE boîte Gmail, avec un alias + par destinataire

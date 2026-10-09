@@ -1,14 +1,12 @@
 import { defineEventHandler, readBody, createError } from 'h3'
 import nodemailer from 'nodemailer'
-import { validateContactPayload, buildContactMail, type ContactPayload } from '../utils/contact'
+import { parseContactPayload, buildContactMail } from '../utils/contact'
 
 export default defineEventHandler(async (event) => {
-  const body = await readBody(event)
-
-  // Validation serveur
-  const validationError = validateContactPayload(body)
-  if (validationError)
-    throw createError({ statusCode: 400, message: validationError })
+  // Validation serveur (mêmes règles que le navigateur) et nettoyage des espaces
+  const result = parseContactPayload(await readBody(event))
+  if ('error' in result)
+    throw createError({ statusCode: 400, message: result.error })
 
   const config = useRuntimeConfig()
 
@@ -20,7 +18,7 @@ export default defineEventHandler(async (event) => {
   })
 
   try {
-    await transporter.sendMail(buildContactMail(body as ContactPayload, config.smtpUser, config.mailTestTo))
+    await transporter.sendMail(buildContactMail(result.payload,config.smtpUser, config.mailTestTo))
   } catch (e) {
     console.error("Envoi du message de contact impossible :", e)
     throw createError({ statusCode: 502, message: "L'envoi du message a échoué." })
